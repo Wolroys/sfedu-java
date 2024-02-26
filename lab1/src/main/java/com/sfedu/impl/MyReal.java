@@ -1,6 +1,6 @@
 package com.sfedu.impl;
 
-import com.sfedu.Main;
+import java.math.BigDecimal;
 
 public class MyReal {
 
@@ -14,11 +14,12 @@ public class MyReal {
     }
 
     public MyReal(double number){
-        String[] parts = String.format("%e", number).split("e");
-        this.mantissa = Integer.parseInt(parts[0].replace(",", ""));
-        this.exponent = Integer.parseInt(parts[1]) - (parts[0].length() - 2);
+        BigDecimal bd = new BigDecimal(Double.toString(number));
+        this.mantissa = bd.unscaledValue().longValue();
+        this.exponent = -bd.scale();
         normalize();
     }
+
 
     private void normalize() {
         while (this.mantissa % 10 == 0 && this.mantissa != 0) {
@@ -47,34 +48,70 @@ public class MyReal {
 
     public MyReal add(MyReal other){
         double thisNumber = this.mantissa * Math.pow(10, this.exponent);
-        double otherNumber = this.mantissa * Math.pow(10, other.exponent);
+        double otherNumber = other.mantissa * Math.pow(10, other.exponent);
 
         return new MyReal(thisNumber + otherNumber);
     }
 
     public MyReal subtract(MyReal other){
         double thisNumber = this.mantissa * Math.pow(10, this.exponent);
-        double otherNumber = this.mantissa * Math.pow(10, other.exponent);
+        double otherNumber = other.mantissa * Math.pow(10, other.exponent);
 
         return new MyReal(thisNumber - otherNumber);
     }
 
     public MyReal multiply(MyReal other){
         double thisNumber = this.mantissa * Math.pow(10, this.exponent);
-        double otherNumber = this.mantissa * Math.pow(10, other.exponent);
+        double otherNumber = other.mantissa * Math.pow(10, other.exponent);
 
         return new MyReal(thisNumber * otherNumber);
     }
 
     public MyReal divide(MyReal other){
         double thisNumber = this.mantissa * Math.pow(10, this.exponent);
-        double otherNumber = this.mantissa * Math.pow(10, other.exponent);
+        double otherNumber = other.mantissa * Math.pow(10, other.exponent);
 
         return new MyReal(thisNumber / otherNumber);
     }
 
-    public MyReal sin(int terms){
-        double x = this.toDouble();
+    public MyReal sin() {
+        MyReal result = new MyReal(0, 0);
+        MyReal term = new MyReal(this.mantissa, this.exponent);
+
+        for (int i = 0; i < 100; i++) {
+            if (i % 2 == 0) {
+                result = result.add(term);
+            } else {
+                result = result.subtract(term);
+            }
+
+            term = term
+                    .multiply(this)
+                    .multiply(this)
+                    .divide(new MyReal((2 * i + 2) * (2 * i + 3), 0));
+        }
+
+        return result;
+    }
+
+    public MyReal cos() {
+        MyReal result = new MyReal(1, 0);
+        MyReal term = new MyReal(1, 0);
+
+        for (int i = 0; i < 100; i++) {
+            term = term
+                    .multiply(this)
+                    .multiply(this)
+                    .divide(new MyReal((2 * i + 1) * (2 * i + 2), 0));
+
+            if (i % 2 == 0) {
+                result = result.subtract(term);
+            } else {
+                result = result.add(term);
+            }
+        }
+
+        return result;
     }
 
     public long getMantissa() {
@@ -99,5 +136,9 @@ public class MyReal {
                 "mantissa=" + mantissa +
                 ", exponent=" + exponent +
                 '}';
+    }
+
+    public double toDouble(){
+        return (double) this.mantissa * Math.pow(10, this.exponent);
     }
 }
