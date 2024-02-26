@@ -1,4 +1,4 @@
-package com.sfedu;
+package com.sfedu.task1;
 
 import java.util.ArrayList;
 import java.util.List;

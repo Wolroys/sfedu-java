@@ -1,12 +1,9 @@
-import com.sfedu.CustomStack;
-import org.junit.jupiter.api.Assertions;
+import com.sfedu.task1.CustomStack;
 import org.junit.jupiter.api.Test;
-
-import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BracketCheckerTest {
+public class StackTest {
 
     @Test
     void stackLengthShouldEquals3(){
@@ -37,10 +34,5 @@ public class BracketCheckerTest {
         CustomStack<Integer> stack = new CustomStack<>();
 
         assertThrows(RuntimeException.class, stack::pop);
-    }
-
-    @Test
-    void allBracketsShouldBeCorrect(){
-
     }
 }
