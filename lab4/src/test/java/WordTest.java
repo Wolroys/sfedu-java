@@ -3,17 +3,18 @@ import com.sfedu.hashSet.WordWithHashSum;
 import com.sfedu.treeSet.WordCompareByEqualsSymbols;
 import com.sfedu.treeSet.WordCompareByFirstThreeSymbols;
 import com.sfedu.treeSet.WordTreeSet;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.TreeSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+
 
 public class WordTest {
 
     @Test
-    void hashSetTest(){
+    public void hashSetTest(){
         HashSet<WordWithHashSum> hashSums = new HashSet<>();
 
         hashSums.add(new WordWithHashSum("black"));
@@ -36,7 +37,7 @@ public class WordTest {
     }
 
     @Test
-    void TreeSetTestByLength(){
+    public void TreeSetTestByLength(){
         TreeSet<WordTreeSet> treeSet = new TreeSet<>();
 
         treeSet.add(new WordTreeSet("black"));
@@ -48,7 +49,7 @@ public class WordTest {
     }
 
     @Test
-    void TreeSetByFirstThreeSymbols(){
+    public void TreeSetByFirstThreeSymbols(){
         TreeSet<WordTreeSet> treeSet = new TreeSet<>(new WordCompareByFirstThreeSymbols());
 
         treeSet.add(new WordTreeSet("black"));
@@ -60,7 +61,7 @@ public class WordTest {
     }
 
     @Test
-    void TreeSetByByEqualsSymbols(){
+    public void TreeSetByByEqualsSymbols(){
         TreeSet<WordTreeSet> treeSet = new TreeSet<>(new WordCompareByEqualsSymbols());
 
         treeSet.add(new WordTreeSet("black"));

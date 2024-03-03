@@ -1,20 +1,21 @@
 package com.sfedu;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-class LettersTest {
+public class LettersTest {
 
     @Test
-    void lettersShouldContainsS(){
+    public void lettersShouldContainsS(){
         Letters letters = new Letters("snake");
 
         assertTrue(letters.contains('s'));
     }
 
     @Test
-    void lettersShouldRemoveLetters(){
+    public void lettersShouldRemoveLetters(){
         Letters letters = new Letters("snake");
 
         letters.remove('e');
@@ -41,7 +42,7 @@ class LettersTest {
     }
 
     @Test
-    void lettersCollectionShouldAddAllLetters(){
+    public void lettersCollectionShouldAddAllLetters(){
         Letters letters = new Letters("abc");
 
         letters.add('d');
@@ -57,7 +58,7 @@ class LettersTest {
     }
 
     @Test
-    void collectionHaveToBeEmpty(){
+    public void collectionHaveToBeEmpty(){
         Letters letters = new Letters("dsakjdaskljdasjkd");
 
         letters.clear();
@@ -67,7 +68,7 @@ class LettersTest {
     }
 
     @Test
-    void collectionShouldRetainAllElements(){
+    public void collectionShouldRetainAllElements(){
         Letters letters = new Letters("hedgehog");
 
         letters.retainAll(new Letters("had"));

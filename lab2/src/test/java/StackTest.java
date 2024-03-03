@@ -1,12 +1,12 @@
 import com.sfedu.task1.CustomStack;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class StackTest {
 
     @Test
-    void stackLengthShouldEquals3(){
+    public void stackLengthShouldEquals3(){
         CustomStack<Integer> stack = new CustomStack<>();
 
         assertTrue(stack.isEmpty());
@@ -19,25 +19,27 @@ public class StackTest {
     }
 
     @Test
-    void popShouldReturn3(){
+    public void popShouldReturn3(){
         CustomStack<Integer> stack = new CustomStack<>();
 
         stack.push(1);
         stack.push(2);
         stack.push(3);
 
-        assertEquals(3, stack.pop());
+        int popEl = stack.pop();
+
+        assertEquals(3, popEl);
     }
 
     @Test
-    void popShouldThrowsException(){
+    public void popShouldThrowsException(){
         CustomStack<Integer> stack = new CustomStack<>();
 
         assertThrows(RuntimeException.class, stack::pop);
     }
 
     @Test
-    void bracketsShouldBeCorrect(){
+    public void bracketsShouldBeCorrect(){
         assertTrue(isBracketsBalanced("({[]})"));
 
         assertFalse(isBracketsBalanced("({[}])"));
@@ -47,7 +49,7 @@ public class StackTest {
         assertFalse(isBracketsBalanced("/* begin end */ {"));
     }
 
-    boolean isBracketsBalanced(String str) {
+    private boolean isBracketsBalanced(String str) {
         CustomStack<String> stack = new CustomStack<>();
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
