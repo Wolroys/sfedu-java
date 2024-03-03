@@ -9,6 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <groupId>com.sfedu</groupId>
     <artifactId>lab2</artifactId>
 
     <properties>

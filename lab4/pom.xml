@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.sfedu</groupId>
-    <artifactId>lab1</artifactId>
+    <artifactId>lab4</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
