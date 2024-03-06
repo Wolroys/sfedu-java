@@ -1,20 +1,18 @@
 package com.sfedu.impl;
 
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-
-public class CustomDecimalTest {
+class CustomDecimalTest {
 
     private static final double DELTA = 0.0001;
 
     @Test
-    public void numberPiShouldTransformFromDoubleToMantissaAndExponent(){
+    void numberPiShouldTransformFromDoubleToMantissaAndExponent(){
         MyReal customDecimal = new MyReal(3.141569);
 
         assertEquals(3141569, customDecimal.getMantissa());
@@ -22,43 +20,43 @@ public class CustomDecimalTest {
     }
 
     @Test
-    public void methodAddShouldEquals4(){
+    void methodAddShouldEquals4(){
         MyReal n1 = new MyReal(15, -1);
         MyReal n2 = new MyReal(25, -1);
         MyReal expected = new MyReal(4.0);
 
-        assertEquals(expected.toDouble(), n1.add(n2).toDouble(), 0.00001);
+        assertEquals(expected.toDouble(), n1.add(n2).toDouble());
     }
 
     @Test
-    public void methodSubtractShouldEqual1(){
+    void methodSubtractShouldEqual1(){
         MyReal n1 = new MyReal(2.5);
         MyReal n2 = new MyReal(15, -1);
         MyReal expected = new MyReal(1);
 
-        assertEquals(expected.toDouble(), n1.subtract(n2).toDouble(), 0.00001);
+        assertEquals(expected.toDouble(), n1.subtract(n2).toDouble());
     }
 
     @Test
-    public void methodMultiplyShouldEqual6(){
+    void methodMultiplyShouldEqual6(){
         MyReal n1 = new MyReal(2.0);
         MyReal n2 = new MyReal(3, 0);
         MyReal expected = new MyReal(6);
 
-        assertEquals(expected.toDouble(), n1.multiply(n2).toDouble(), 0.00001);
+        assertEquals(expected.toDouble(), n1.multiply(n2).toDouble());
     }
 
     @Test
-    public void methodDivideShouldEqual3(){
+    void methodDivideShouldEqual3(){
         MyReal n1 = new MyReal(9);
         MyReal n2 = new MyReal(3, 0);
         MyReal expected = new MyReal(3);
 
-        assertEquals(expected.toDouble(), n1.divide(n2).toDouble(), 0.00001);
+        assertEquals(expected.toDouble(), n1.divide(n2).toDouble());
     }
 
     @Test
-    public void bigDecimalSinShouldEqualMyRealSin(){
+    void bigDecimalSinShouldEqualMyRealSin(){
         MyReal myReal = new MyReal(5, -1);
         BigDecimal bd = new BigDecimal("0.5");
 
@@ -68,7 +66,7 @@ public class CustomDecimalTest {
     }
 
     @Test
-    public void bigDecimalSinShouldEqualMyRealCos(){
+    void bigDecimalSinShouldEqualMyRealCos(){
         MyReal myReal = new MyReal(5, -1);
         BigDecimal bd = new BigDecimal("0.5");
 

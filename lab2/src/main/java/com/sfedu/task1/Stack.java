@@ -2,13 +2,12 @@ package com.sfedu.task1;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
-public class CustomStack<T> {
+public class Stack<T> {
 
     private List<T> stack;
 
-    public CustomStack(){
+    public Stack(){
         stack = new ArrayList<>();
     }
 

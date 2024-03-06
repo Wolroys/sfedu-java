@@ -1,6 +1,6 @@
 package com.sfedu.task2;
 
-import com.sfedu.task1.CustomStack;
+import com.sfedu.task1.Stack;
 
 public class Calc {
     private String expression;
@@ -12,7 +12,7 @@ public class Calc {
     public String toPoliz() {
         String[] split = expression.split(" ");
         StringBuilder output = new StringBuilder();
-        CustomStack<String> stack = new CustomStack<>();
+        Stack<String> stack = new Stack<>();
 
         for (String s : split) {
             if (isOperator(s)) {
@@ -45,7 +45,7 @@ public class Calc {
     public double calculate() {
         String poliz = toPoliz();
         String[] split = poliz.split(" ");
-        CustomStack<Double> stack = new CustomStack<>();
+        Stack<Double> stack = new Stack<>();
 
         for (String s : split) {
             if (isOperator(s)) {
