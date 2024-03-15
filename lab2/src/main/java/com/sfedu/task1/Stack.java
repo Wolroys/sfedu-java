@@ -1,43 +1,60 @@
 package com.sfedu.task1;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class Stack<T> {
 
-    private List<T> stack;
+    private static final int DEFAULT_CAPACITY = 10;
+    private Object[] stack;
+    private int top;
 
-    public Stack(){
-        stack = new ArrayList<>();
+    public Stack() {
+        stack = new Object[DEFAULT_CAPACITY];
+        top = -1;
     }
 
-    public void push(T value){
-        stack.add(value);
+    public void push(T value) {
+        if (top == stack.length - 1)
+            resize();
+
+        stack[++top] = value;
     }
 
-    public T pop(){
-        if (stack.isEmpty()) {
+
+    @SuppressWarnings("unchecked") //Добавляем чтобы компилятор не подсвечивал ошибку приведения типа
+    public T pop() {
+        if (isEmpty()) {
             throw new RuntimeException("Stack is empty");
         }
 
-        return stack.remove(stack.size() - 1);
+        T value = (T) stack[top];
+        stack[top--] = null;
+
+        return value;
     }
 
-    public T peek(){
-        if (stack.isEmpty()){
+    @SuppressWarnings("unchecked")
+    public T peek() {
+        if (isEmpty()) {
             throw new RuntimeException("Stack is empty");
         }
 
-        return stack.get(stack.size() - 1);
+        return (T) stack[top];
     }
 
-    public boolean isEmpty(){
-        return stack.isEmpty();
+
+    public boolean isEmpty() {
+        return top == -1;
     }
 
-    public int size(){
-        return stack.size();
+    public int size() {
+        return top + 1;
     }
 
+    private void resize() {
+        int newSize = stack.length * 2;
+
+        stack = Arrays.copyOf(stack, newSize);
+    }
 
 }
