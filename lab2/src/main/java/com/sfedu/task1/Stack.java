@@ -13,6 +13,12 @@ public class Stack<T> {
         top = -1;
     }
 
+    //Если пользователь хочет задать свой начальный размер стеку
+    public Stack(int capacity) {
+        stack = new Object[capacity];
+        top = -1;
+    }
+
     public void push(T value) {
         if (top == stack.length - 1)
             resize();
