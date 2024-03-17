@@ -47,6 +47,64 @@ public class StackTest {
         assertFalse(isBracketsBalanced("/* begin end */ {"));
     }
 
+    @Test
+    void stackLengthAfterPopShouldEquals2() {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.pop();
+
+        assertEquals(2, stack.size());
+    }
+
+    @Test
+    void pushShouldIncreaseStackSize() {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(1);
+        int oldSize = stack.size();
+        stack.push(2);
+
+        assertEquals(oldSize + 1, stack.size());
+    }
+
+    @Test
+    void popShouldReturn2After3IsPopped() {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.pop();
+
+        assertEquals(2, stack.pop());
+    }
+
+    @Test
+    void popShouldThrowsExceptionAfterAllElementsArePopped() {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(1);
+        stack.pop();
+
+        assertThrows(RuntimeException.class, stack::pop);
+    }
+
+    @Test
+    void bracketsShouldBeCorrectForMultiplePairs() {
+        assertTrue(isBracketsBalanced("({[]})({[]})"));
+        assertFalse(isBracketsBalanced("({[}])([{]})"));
+    }
+
+    @Test
+    void bracketsShouldBeCorrectForNestedPairs() {
+        assertTrue(isBracketsBalanced("({[{[]}]})([{[{[]}]}])"));
+        assertFalse(isBracketsBalanced("({[{[}]}])"));
+    }
+
+
     boolean isBracketsBalanced(String str) {
         Stack<String> stack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
