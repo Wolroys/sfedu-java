@@ -19,10 +19,18 @@ public class WordWithDifference {
 
     @Override
     public int hashCode() {
-        if (word.length() < 2)
-            return 0;
+        int vowelsCount = countVowels(word);
+        return vowelsCount;
+    }
 
-        return word.charAt(0) - word.charAt(word.length() - 1);
+    private int countVowels(String word) {
+        int count = 0;
+        for (char c : word.toLowerCase().toCharArray()) {
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override
@@ -32,3 +40,6 @@ public class WordWithDifference {
                 '}';
     }
 }
+
+
+
